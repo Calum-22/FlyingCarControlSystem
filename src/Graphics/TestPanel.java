@@ -1,6 +1,8 @@
 package Graphics;
 
 import ControlSystemClasses.*;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -19,6 +21,7 @@ public class TestPanel extends JPanel implements ActionListener {
     Timer timer;
     private boolean running;
     private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+    private ArrayList<Route> routes = new ArrayList<Route>();
     private ArrayList<Dot> dots = new ArrayList<Dot>();
     private final char[] DIRECTION = {'U','D','L','R'};
 
@@ -35,6 +38,9 @@ public class TestPanel extends JPanel implements ActionListener {
         timer.start();
         running = true;
         makeDots();
+        int[] s = {250,300};
+        int[] e = {750,300};
+        routes.add(new Route('S',s,e));
     }
 
     public void paintComponent(Graphics g){
@@ -47,6 +53,9 @@ public class TestPanel extends JPanel implements ActionListener {
         g.setColor(Color.red);
         for(int i=0;i<dots.size();i++){
             g.fillOval(dots.get(i).getX(),dots.get(i).getY(),10,10);
+        }
+        for(int i=0;i<routes.size();i++) {
+            g.drawLine(routes.get(i).getStart()[0],routes.get(i).getStart()[1],routes.get(i).getEnd()[0],routes.get(i).getEnd()[1]);
         }
     }
 
