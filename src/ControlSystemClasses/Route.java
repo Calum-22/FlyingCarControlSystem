@@ -5,10 +5,18 @@ import java.util.ArrayList;
 public class Route {
     private ArrayList<Lane> lanes;
     private char size; //this system will be changed to accomodate more sizes, for now S,M,L
-    private int[] start;
-    private int[] end;
+    private Point start;
+    private Point end;
 
-    public Route(char size, int[] start, int[] end){
+    public Route(char size, ArrayList<Point>coords){
+        this.size = size;
+        this.start = coords.getFirst();
+        this.end = coords.getLast();
+    }
+
+
+
+    public Route(char size, Point start, Point end){
         this.size = size;
         this.start = start;
         this.end = end;
@@ -33,11 +41,11 @@ public class Route {
         }
     }
 
-    public int[] getStart(){
+    public Point getStart(){
         return this.start;
     }
 
-    public int[] getEnd(){
+    public Point getEnd(){
         return this.end;
     }
 }

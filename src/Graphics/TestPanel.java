@@ -1,6 +1,7 @@
 package Graphics;
 
 import ControlSystemClasses.*;
+import ControlSystemClasses.Point;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class TestPanel extends JPanel implements ActionListener {
         makeDots();
         int[] s = {250,300};
         int[] e = {750,300};
-        routes.add(new Route('S',s,e));
+        routes.add(new Route('S',new Point(250,300),new Point(750,300)));
     }
 
     public void paintComponent(Graphics g){
@@ -55,8 +56,12 @@ public class TestPanel extends JPanel implements ActionListener {
             g.fillOval(dots.get(i).getX(),dots.get(i).getY(),10,10);
         }
         for(int i=0;i<routes.size();i++) {
-            g.drawLine(routes.get(i).getStart()[0],routes.get(i).getStart()[1],routes.get(i).getEnd()[0],routes.get(i).getEnd()[1]);
+            g.drawLine(routes.get(i).getStart().getX(),routes.get(i).getStart().getY(),routes.get(i).getEnd().getX(),routes.get(i).getEnd().getY());
         }
+        g.drawArc(50,200,100,100,0,360);
+        g.drawRect(50,200,100,100);
+        g.setColor(Color.blue);
+        g.fillOval(50,200,5,5);
     }
 
     public void makeDots(){
